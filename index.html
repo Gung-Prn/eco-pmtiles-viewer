@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="แผนที่สำหรับตรวจสอบข้อมูล PMTiles บน Elemnt Marginalia basemap"
+    />
+    <title>Eco PMTiles Viewer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.18.0/dist/maplibre-gl.css" />
+    <link rel="stylesheet" href="./styles.css?v=7" />
+  </head>
+  <body>
+    <div class="app-shell" id="app-shell">
+      <header class="app-header" aria-label="ส่วนหัวแผนที่">
+        <div class="brand-block">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <p class="brand-name">Eco PMTiles</p>
+            <p class="brand-context">Rice · 40/30 m</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <p class="status-chip" id="status-chip" data-state="loading" role="status" aria-live="polite">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="status-text">กำลังเตรียมแผนที่…</span>
+          </p>
+          <button class="control-button" id="fit-button" type="button" disabled>
+            ดูขอบเขต
+          </button>
+        </div>
+      </header>
+
+      <main class="map-stage" aria-label="แผนที่ PMTiles">
+        <div id="map" class="map" aria-label="แผนที่แบบโต้ตอบ"></div>
+
+        <section class="map-panel" aria-labelledby="panel-title">
+          <div class="panel-heading">
+            <div>
+              <p class="panel-kicker">PMTILES OVERLAY</p>
+              <h1 id="panel-title">ชั้นข้อมูลการปลูกข้าว</h1>
+            </div>
+            <span class="format-badge" id="format-badge">กำลังอ่าน</span>
+          </div>
+
+          <label class="style-picker" for="style-mode">
+            <span>รูปแบบการแสดงผล</span>
+            <select id="style-mode" disabled>
+              <option value="start_date">ช่วงเริ่มปลูก · start_date</option>
+              <option value="harv_low">เดือนสิ้นสุดเก็บเกี่ยว · harv_low</option>
+            </select>
+          </label>
+
+          <dl class="metadata-list" aria-label="รายละเอียด PMTiles">
+            <div>
+              <dt>Source</dt>
+              <dd id="source-name">pmtile_rice</dd>
+            </div>
+            <div>
+              <dt>Zoom</dt>
+              <dd id="zoom-range">—</dd>
+            </div>
+            <div>
+              <dt>Layers</dt>
+              <dd id="layer-count">—</dd>
+            </div>
+          </dl>
+
+          <div class="panel-controls">
+            <label class="toggle-row" for="layer-toggle">
+              <span>
+                <strong>แสดง PMTiles</strong>
+                <small>ซ้อนทับบน Marginalia basemap</small>
+              </span>
+              <input id="layer-toggle" type="checkbox" checked disabled />
+            </label>
+
+            <label class="range-control" for="opacity-range">
+              <span>
+                <strong>ความทึบ</strong>
+                <output id="opacity-output" for="opacity-range">72%</output>
+              </span>
+              <input
+                id="opacity-range"
+                type="range"
+                min="0"
+                max="100"
+                value="72"
+                step="1"
+                disabled
+              />
+            </label>
+          </div>
+
+          <div class="legend" aria-label="คำอธิบายสัญลักษณ์">
+            <p class="legend-heading">Legend <span id="legend-label">กำลังตรวจชนิดข้อมูล…</span></p>
+            <ul class="legend-list" id="legend-list"></ul>
+          </div>
+
+          <details class="attribute-panel" id="attribute-panel">
+            <summary id="attribute-summary">Attributes · กำลังอ่าน…</summary>
+            <div class="attribute-table-wrap">
+              <table class="attribute-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Field</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Source layer</th>
+                  </tr>
+                </thead>
+                <tbody id="attribute-list"></tbody>
+              </table>
+              <p class="attribute-empty" id="attribute-empty" hidden>
+                PMTiles metadata ไม่ได้ประกาศรายการ fields
+              </p>
+            </div>
+          </details>
+        </section>
+
+        <div class="error-panel" id="error-panel" role="alert" hidden>
+          <div>
+            <strong id="error-title">เปิดชั้นข้อมูลไม่ได้</strong>
+            <p id="error-message"></p>
+          </div>
+          <button class="control-button control-button--dark" id="retry-button" type="button">
+            ลองใหม่
+          </button>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        <p>Basemap · Elemnt Marginalia 2026-06-23</p>
+        <p id="coordinate-readout" aria-live="polite">Lng — · Lat — · Z —</p>
+      </footer>
+    </div>
+
+    <noscript>หน้านี้ต้องใช้ JavaScript เพื่อแสดง MapLibre และ PMTiles</noscript>
+    <script type="module" src="./app.js?v=11"></script>
+  </body>
+</html>
