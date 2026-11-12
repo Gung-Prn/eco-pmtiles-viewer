@@ -227,18 +227,18 @@ Expression นี้ทำงานตามลำดับดังนี้
 
 ```ini
 harvest_legend = [
-  { "month": "01", "label": "มกราคม", "colour": "#6A5ACD" },
-  { "month": "02", "label": "กุมภาพันธ์", "colour": "#4169E1" },
-  { "month": "03", "label": "มีนาคม", "colour": "#00A6A6" },
-  { "month": "04", "label": "เมษายน", "colour": "#2E8B57" },
-  { "month": "05", "label": "พฤษภาคม", "colour": "#7CB342" },
-  { "month": "06", "label": "มิถุนายน", "colour": "#C0CA33" },
-  { "month": "07", "label": "กรกฎาคม", "colour": "#F9A825" },
-  { "month": "08", "label": "สิงหาคม", "colour": "#FB8C00" },
-  { "month": "09", "label": "กันยายน", "colour": "#F4511E" },
-  { "month": "10", "label": "ตุลาคม", "colour": "#D81B60" },
-  { "month": "11", "label": "พฤศจิกายน", "colour": "#8E24AA" },
-  { "month": "12", "label": "ธันวาคม", "colour": "#5E35B1" }
+  { "month": "01", "label": "มกราคม", "colour": "#006D44" },
+  { "month": "02", "label": "กุมภาพันธ์", "colour": "#3DA269" },
+  { "month": "03", "label": "มีนาคม", "colour": "#85B320" },
+  { "month": "04", "label": "เมษายน", "colour": "#B6CD00" },
+  { "month": "05", "label": "พฤษภาคม", "colour": "#44C8EC" },
+  { "month": "06", "label": "มิถุนายน", "colour": "#0B4DA4" },
+  { "month": "07", "label": "กรกฎาคม", "colour": "#4A4FC9" },
+  { "month": "08", "label": "สิงหาคม", "colour": "#A647BC" },
+  { "month": "09", "label": "กันยายน", "colour": "#E02B93" },
+  { "month": "10", "label": "ตุลาคม", "colour": "#FA6700" },
+  { "month": "11", "label": "พฤศจิกายน", "colour": "#FF8D00" },
+  { "month": "12", "label": "ธันวาคม", "colour": "#FBC100" }
 ]
 ```
 
@@ -272,9 +272,9 @@ harv_low = "2026-12-03"
 [
   "case",
   ["==", ["slice", ["to-string", ["get", "harv_low"]], 5, 7], "01"],
-  "#6A5ACD",
+  "#006D44",
   ["==", ["slice", ["to-string", ["get", "harv_low"]], 5, 7], "02"],
-  "#4169E1",
+  "#3DA269",
   "#2369DC"
 ]
 ```
